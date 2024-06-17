@@ -34,7 +34,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'rest_framework',
+    'drf_spectacular',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
+}
+    
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'service1',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,5 +139,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AFRICASTALKING_USERNAME = 'your_username'
-AFRICASTALKING_API_KEY = 'your_api_key'
+# Africa's Talking API
+AFRICASTALKING_USERNAME = os.environ.get('AFRICASTALKING_USERNAME')
+AFRICASTALKING_API_KEY = os.environ.get('AFRICASTALKING_API_KEY')

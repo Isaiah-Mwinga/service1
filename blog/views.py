@@ -7,7 +7,7 @@ load_dotenv()
 from django.http import JsonResponse
 
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import extend_schema
 from .models import Customer, Order
 from .serializers import CustomerSerializer, OrderSerializer
 from .tasks import send_order_alert
@@ -19,7 +19,7 @@ import jwt
 auth0_domain = os.environ.get('AUTH0_DOMAIN')
 client_id = os.environ.get('AUTH0_CLIENT_ID')
 client_secret = os.environ.get('AUTH0_CLIENT_SECRET')
-redirect_uri = "https://github.com/Isaiah-Mwinga"
+redirect_uri = "http://127.0.0.1:8000/blog/docs/"
 issuer = f"https://{auth0_domain}/"
 
 
@@ -73,16 +73,35 @@ def oidc_callback(request):
     print("Invalid Token: ", e)
     #return JsonResponse({"error": "Invalid Token"})
 
+
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-    permission_classes = [IsAuthenticated]
+
+    @extend_schema(
+        methods=("POST",),
+        request=CustomerSerializer,
+        responses={201: CustomerSerializer},
+        description='Create a new customer'
+    )
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
+
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
+
+    @extend_schema(
+        methods=("POST",),
+        request=OrderSerializer,
+        responses={201: OrderSerializer},
+        description='Create a new order'
+    )
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         order = serializer.save()
         send_order_alert(order.customer, order)
+
