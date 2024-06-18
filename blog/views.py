@@ -19,7 +19,7 @@ import jwt
 auth0_domain = os.environ.get('AUTH0_DOMAIN')
 client_id = os.environ.get('AUTH0_CLIENT_ID')
 client_secret = os.environ.get('AUTH0_CLIENT_SECRET')
-redirect_uri = "http://127.0.0.1:8000/blog/docs/"
+redirect_uri = "https://service1-0omv.onrender.com/blog/docs/"
 issuer = f"https://{auth0_domain}/"
 
 
