@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from datetime import timedelta
 from pathlib import Path
+import dj_database_url
 
 load_dotenv()
 
@@ -20,9 +21,8 @@ SECRET_KEY = 'django-insecure-7rsqcvjane6ylht-97x)rpd82!et=455wv7vkbh6=8_)kezsi8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'service1-0omv.onrender.com',
-]
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -101,6 +101,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -146,6 +147,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Africa's Talking API
 AFRICASTALKING_USERNAME = os.environ.get('AFRICASTALKING_USERNAME')
