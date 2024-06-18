@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7rsqcvjane6ylht-97x)rpd82!et=455wv7vkbh6=8_)kezsi8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'service1-0omv.onrender.com',
@@ -151,4 +151,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AFRICASTALKING_USERNAME = os.environ.get('AFRICASTALKING_USERNAME')
 AFRICASTALKING_API_KEY = os.environ.get('AFRICASTALKING_API_KEY')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
