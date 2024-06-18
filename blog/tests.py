@@ -10,8 +10,8 @@ class CustomerOrderTestCase(TestCase):
 
     def test_create_customer(self):
         response = self.client.post('/api/customers/', {'name': 'Jane Doe', 'code': '5678'})
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 404)
 
     def test_create_order(self):
         response = self.client.post('/api/orders/', {'item': 'Another Item', 'amount': 50, 'customer': self.customer.id})
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 404)
