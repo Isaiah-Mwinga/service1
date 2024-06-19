@@ -5,7 +5,7 @@ Authlib==1.2.1
 channels==4.0.0
 click==8.1.7
 cryptography==42.0.5
-daphne==4.1.0
+daphne==4.0.0
 dj-database-url==2.2.0
 Django==4.2.13
 django-auth==0.1.9
