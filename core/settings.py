@@ -23,7 +23,7 @@ DEBUG = True
 #
 #ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'j7_0ygs!b(q#$aon^uft#+pr$1b5)=a=cidp8pa#lgckm$7-8d'
-ALLOWED_HOSTS = ['service1-0omv.onrender.com']
+ALLOWED_HOSTS = ['service1-0omv.onrender.com', '127.0.0.1', ]
 
 
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'rest_framework',
     'drf_spectacular',
+    'phonenumber_field',
 ]
 
 REST_FRAMEWORK = {
