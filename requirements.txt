@@ -55,6 +55,7 @@ PyJWT==2.8.0
 pyOpenSSL==24.0.0
 PySocks==1.7.1
 pytest==8.2.2
+pytest-django==4.9.0
 python-dotenv==1.0.1
 PyYAML==6.0.2rc1
 redis==5.0.8
@@ -80,6 +81,7 @@ uritemplate==4.1.1
 urllib3==2.2.2
 websocket-client==1.8.0
 Werkzeug==3.0.4
+whitenoise==6.7.0
 wsproto==1.2.0
 WTForms==3.1.2
 zope.interface==7.0.3
