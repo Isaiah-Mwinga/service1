@@ -10,15 +10,11 @@ def send_order_alert(customer, order):
     
     try:
         response = sms.send(message, [phone_number])
-        
-        # Example: Log the response or check the status
+        print(f"Response: {response}")  # Log response to inspect
+        # Check for specific success or error conditions in response
         if response['SMSMessageData']['Recipients']:
             print(f"SMS sent successfully: {response}")
         else:
-            print("SMS failed to send")
-            
-        return response
+            print("SMS sending failed. Check response details.")
     except Exception as e:
-        # Handle exceptions (e.g., network issues, invalid phone numbers)
         print(f"Failed to send SMS: {e}")
-        return None

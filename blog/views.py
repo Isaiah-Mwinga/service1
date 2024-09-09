@@ -7,7 +7,6 @@ load_dotenv()
 from django.http import JsonResponse
 
 from rest_framework import viewsets
-from drf_spectacular.utils import extend_schema
 from .models import Customer, Order
 from .serializers import CustomerSerializer, OrderSerializer
 from .tasks import send_order_alert
@@ -78,12 +77,6 @@ class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
-    @extend_schema(
-        methods=("POST",),
-        request=CustomerSerializer,
-        responses={201: CustomerSerializer},
-        description='Create a new customer'
-    )
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
 
@@ -92,12 +85,6 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-    @extend_schema(
-        methods=("POST",),
-        request=OrderSerializer,
-        responses={201: OrderSerializer},
-        description='Create a new order'
-    )
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
 
