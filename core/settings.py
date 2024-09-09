@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-7rsqcvjane6ylht-97x)rpd82!et=455wv7vkbh6=8_)kezsi8'
 #
 ## SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 #
 #ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'j7_0ygs!b(q#$aon^uft#+pr$1b5)=a=cidp8pa#lgckm$7-8d'
@@ -88,34 +88,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': os.environ.get('DB_NAME'),
-#        'USER': os.environ.get('DB_USER'),
-#        'PASSWORD': os.environ.get('DB_USER_PASSWORD'),
-#        'HOST': os.environ.get('DB_HOST'),
-#        'PORT': os.environ.get('DB_PORT'),
-#    }
-#}
-
-if not DEBUG:
-    DATABASES = {
-	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
-    
-else:
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_USER_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
     }
-}
-   
-    
+
+    # Optionally override with DATABASE_URL if it's defined
+#db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+#DATABASES['default'].update(db_from_env)
+     
 
 
 
@@ -176,7 +164,7 @@ STORAGES = {
 AFRICASTALKING_USERNAME = os.environ.get('AFRICASTALKING_USERNAME')
 AFRICASTALKING_API_KEY = os.environ.get('AFRICASTALKING_API_KEY')
 
-print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+
 
 
 
