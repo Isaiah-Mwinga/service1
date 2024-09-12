@@ -4,7 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Customer(models.Model):
     name = models.CharField(max_length=255)
-    phone_number = PhoneNumberField(_("Phone number"), unique=True, default='+254745101544')
+    phone_number = PhoneNumberField(_("Phone number"), unique=True, default='+00000000000')
     code = models.CharField(max_length=255)
 
     def __str__(self):
